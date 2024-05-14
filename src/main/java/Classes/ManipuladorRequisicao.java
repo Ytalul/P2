@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class ManipuladorRequisicao {
     public ArrayList<Requisicao> criarListaRequisicao(String caminhoarquivo) throws IOException {
-        ArrayList<Requisicao> listaRequisicao = null;
+        ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 
         try {
             File arquivo = new File(caminhoarquivo);
@@ -20,8 +20,7 @@ public class ManipuladorRequisicao {
 
                 String linha = bufferedReader.readLine();
 
-                String regex = "^(\\S+) (\\S+) (\\S+) \\[(.*?)\\] \"(\\S+) ([^\\s]+) (HTTP\\/\\d\\.\\d)\" (\\d+) (\\d+) \"(.*?)\" \"(.*?)\" \"(.*?)\"$";
-
+                String regex = "^(\\S+) \\S+ \\S+ \\[(\\S+ [+-]\\d{4})\\] \"\\S+ (\\S+) \\S+\" (\\d{3}) (\\d+) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$";
                 // Compila a regex em um padrão
                 Pattern pattern = Pattern.compile(regex);
 
@@ -30,14 +29,18 @@ public class ManipuladorRequisicao {
 
                 // Se encontrar um match, extrai as informações
                 if (matcher.find()) {
-                    System.out.println("cheguei aq");
+
                     novaRequisicao.enderecoIp = matcher.group(1);
                     novaRequisicao.identidadeCliente = matcher.group(2);
                     novaRequisicao.userId = matcher.group(3);
                     novaRequisicao.data = matcher.group(4);
                     novaRequisicao.tipoRecSolicitacao = matcher.group(5);
-                    novaRequisicao.codigoStatus = Integer.parseInt(matcher.group(7));
-                    novaRequisicao.tamanhoObjeto = Integer.parseInt(matcher.group(8));
+                    novaRequisicao.codigoStatus = matcher.group(7);
+                    novaRequisicao.tamanhoObjeto = matcher.group(8);
+
+                    // So pra garantir que tá coletando certo
+                    System.out.println(novaRequisicao.enderecoIp + novaRequisicao.identidadeCliente + novaRequisicao.userId+ novaRequisicao.data
+                    +novaRequisicao.tipoRecSolicitacao+ novaRequisicao.codigoStatus + novaRequisicao.tamanhoObjeto);
 
                     listaRequisicao.add(novaRequisicao);
                 }

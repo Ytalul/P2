@@ -5,7 +5,7 @@ public class Requisicao {
     public String identidadeCliente;
     public String userId;
     public String data;
-    public String tipoRecSolicitacao;
+    public String tipoDeRequisicaoERecursoSolicitado;
     public String codigoStatus;
     public String tamanhoObjeto;
 }

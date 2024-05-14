@@ -8,8 +8,7 @@ import java.io.IOException;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws IOException {
-        int a = 2;
-        System.out.println("Alterei aqui");
+        int idade = 150;
         //ManipuladorRequisicao manipulador = new ManipuladorRequisicao();
         //alterar o caminho do arquivo pro caminho que está na sua máquina
         //manipulador.criarListaRequisicao("C:\\Users\\ytalo\\Downloads\\access.log");

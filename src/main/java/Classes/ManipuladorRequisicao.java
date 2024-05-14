@@ -14,13 +14,13 @@ public class ManipuladorRequisicao {
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
+            // Posteriormente usar While() pra ler todas as linhas do arquivo
             for (int i = 0; i < 5; i++) {
                 Requisicao novaRequisicao = new Requisicao();
 
                 String linha = bufferedReader.readLine();
 
                 String regex = "^(\\S+) (\\S+) (\\S+) \\[(.*?)\\] \"(\\S+) ([^\\s]+) (HTTP\\/\\d\\.\\d)\" (\\d+) (\\d+) \"(.*?)\" \"(.*?)\" \"(.*?)\"$";
-
 
                 // Compila a regex em um padrão
                 Pattern pattern = Pattern.compile(regex);
@@ -39,18 +39,8 @@ public class ManipuladorRequisicao {
                     novaRequisicao.codigoStatus = Integer.parseInt(matcher.group(7));
                     novaRequisicao.tamanhoObjeto = Integer.parseInt(matcher.group(8));
 
-                    System.out.println(linha);
-                    System.out.println(novaRequisicao.enderecoIp);
-                    System.out.println(novaRequisicao.identidadeCliente);
-                    System.out.println(novaRequisicao.userId);
-                    System.out.println(novaRequisicao.data);
-                    System.out.println(novaRequisicao.tipoRecSolicitacao);
-                    System.out.println(novaRequisicao.codigoStatus);
-                    System.out.println(novaRequisicao.tamanhoObjeto);
-
                     listaRequisicao.add(novaRequisicao);
                 }
-
             }
             bufferedReader.close();
         } catch (FileNotFoundException e) {

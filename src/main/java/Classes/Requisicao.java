@@ -6,7 +6,6 @@ public class Requisicao {
     public String userId;
     public String data;
     public String tipoRecSolicitacao;
-
     public int codigoStatus;
     public int tamanhoObjeto;
 }

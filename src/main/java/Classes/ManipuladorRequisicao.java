@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-public class ManipuladorRequisicao {
+import Interfaces.iManipuladorRequisicao;
+public class ManipuladorRequisicao implements iManipuladorRequisicao {
     public ArrayList<Requisicao> criarListaRequisicao(String caminhoarquivo) throws IOException {
         ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 

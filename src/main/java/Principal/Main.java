@@ -1,44 +1,43 @@
 package Principal;
 
 import Classes.ManipuladorRequisicao;
+import Classes.Requisicao;
+import Interfaces.iMetodos;
+import Classes.Metodos;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws IOException {
-
+        String filePath = "C:\\Users\\AzupixLS\\Downloads\\access.log"; // ajuste o caminho do arquivo
         ManipuladorRequisicao manipulador = new ManipuladorRequisicao();
-        //alterar o caminho do arquivo pro caminho que está na sua máquina
-        manipulador.criarListaRequisicao("C:\\Users\\ytalo\\Downloads\\access.log");
+        List<Requisicao> requisicoes = manipulador.criarListaRequisicao(filePath);
 
-        int opcaoSelecionada=1;
-        Scanner scanner = new Scanner(System.in);
-        while ( opcaoSelecionada != 0 ) {
-            System.out.println("Selecione uma das opções:\n1 - Recursos grandes respondidos\n2 - Não respondidos\n3 - % de requisições por SO\n4 - Média das requisições POST\n0 - Sair");
-            opcaoSelecionada = scanner.nextInt();
-            switch (opcaoSelecionada) {
-                case 1:
-                    // chamar sua função aqui e criá-la na classe Métodos
-                case 2: {
-                    // chamar sua função aqui e criá-la na classe Métodos
-                }
-                case 3: {
-                    // chamar sua função aqui e criá-la na classe Métodos
-                }
-                case 4: {
-                    // chamar sua função aqui e criá-la na classe Métodos
-                }
+        iMetodos metodos = new Metodos();
 
-                // Se ele não selecionar nada, o programa será encerrado
-                default: {
-                    System.exit(0);
+        // Supondo que temos um menu de opções
+        int opcao = 4; // exemplo: calcular a média das requisições
 
-                }
-            }
+        switch (opcao) {
+            case 1:
+                // Chamar método para "Recurso grande"
+                break;
+            case 2:
+                // Chamar método para "Não respondido"
+                break;
+            case 3:
+                // Chamar método para "Das requisições"
+                break;
+            case 4:
+                // Chamar método para calcular a média das requisições
+                double media = metodos.MediaReq(requisicoes);
+                System.out.println("A média dos tamanhos das requisições POST respondidas com sucesso em 2021 é: " + media);
+                break;
+            default:
+                System.out.println("Opção inválida.");
         }
     }
 }

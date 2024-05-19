@@ -8,4 +8,17 @@ public class Requisicao {
     public String tipoDeRequisicaoERecursoSolicitado;
     public String codigoStatus;
     public String tamanhoObjeto;
+
+    @Override
+    public String toString() {
+        return "Requisicao{" +
+                "enderecoIp='" + enderecoIp + '\'' +
+                ", identidadeCliente='" + identidadeCliente + '\'' +
+                ", userId='" + userId + '\'' +
+                ", data='" + data + '\'' +
+                ", tipoDeRequisicaoERecursoSolicitado='" + tipoDeRequisicaoERecursoSolicitado + '\'' +
+                ", codigoStatus='" + codigoStatus + '\'' +
+                ", tamanhoObjeto='" + tamanhoObjeto + '\'' +
+                '}';
+    }
 }

@@ -12,13 +12,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String filePath = "C:\\Users\\15565961467\\Downloads\\access.log"; // ajuste o caminho do arquivo
+
+         // ---- AJUSTAR O CAMINHO DO ARQUIVO NA CLASSE MANIPULADOR LINHA  14 ----
         ManipuladorRequisicao manipulador = new ManipuladorRequisicao();
-        List<Requisicao> requisicoes = manipulador.criarListaRequisicao(filePath);
+        List<Requisicao> requisicoes = manipulador.criarListaRequisicao();
+
 
         iMetodos metodos = new Metodos();
-
-        // Supondo que temos um menu de opções
         int opcao = 1; // exemplo: calcular a média das requisições
 
         switch (opcao) {

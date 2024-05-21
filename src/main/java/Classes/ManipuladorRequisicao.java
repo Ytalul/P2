@@ -5,11 +5,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Interfaces.iManipuladorRequisicao;
 public class ManipuladorRequisicao implements iManipuladorRequisicao {
-    public ArrayList<Requisicao> criarListaRequisicao(String caminhoarquivo) throws IOException {
+
+
+    public ArrayList<Requisicao> criarListaRequisicao() throws IOException {
         ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 
         try {
-            File arquivo = new File(caminhoarquivo);
+            File arquivo = new File("C:\\Users\\ytalo\\Downloads\\access.log");
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

@@ -1,6 +1,9 @@
 package Classes;
 
 import Interfaces.iMetodos;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class Metodos implements iMetodos {
@@ -9,8 +12,8 @@ public class Metodos implements iMetodos {
     public void RecursoGrande(List<Requisicao> requisicoes) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("recursosGrandes.txt"))) {
             for (Requisicao req : requisicoes) {
-                if (req.getCodigoResposta() >= 200 && req.getCodigoResposta() < 300 && req.getTamanhoObjeto() > 2000) {
-                    writer.write(req.getCodigoResposta() + " " + req.getTamanhoObjeto() + " " + req.getEnderecoIP());
+                if (Integer.parseInt(req.codigoStatus) >= 200 && Integer.parseInt(req.codigoStatus) < 300 && Integer.parseInt(req.tamanhoObjeto) > 2000) {
+                    writer.write(req.codigoStatus + " " + req.tamanhoObjeto + " " + req.enderecoIp);
                     writer.newLine();
                 }
             }

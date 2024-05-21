@@ -12,14 +12,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String filePath = "C:\\Users\\AzupixLS\\Downloads\\access.log"; // ajuste o caminho do arquivo
+        String filePath = "C:\\Users\\15565961467\\Downloads\\access.log"; // ajuste o caminho do arquivo
         ManipuladorRequisicao manipulador = new ManipuladorRequisicao();
         List<Requisicao> requisicoes = manipulador.criarListaRequisicao(filePath);
 
         iMetodos metodos = new Metodos();
 
         // Supondo que temos um menu de opções
-        int opcao = 4; // exemplo: calcular a média das requisições
+        int opcao = 1; // exemplo: calcular a média das requisições
 
         switch (opcao) {
             case 1:

@@ -24,6 +24,7 @@ public class Main {
         switch (opcao) {
             case 1:
                 // Chamar método para "Recurso grande"
+                metodos.RecursoGrande(requisicoes);
                 break;
             case 2:
                 // Chamar método para "Não respondido"

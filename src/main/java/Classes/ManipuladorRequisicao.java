@@ -2,9 +2,11 @@ package Classes;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Interfaces.iManipuladorRequisicao;
+
 public class ManipuladorRequisicao implements iManipuladorRequisicao {
 
     public ArrayList<Requisicao> criarListaRequisicao() throws IOException {

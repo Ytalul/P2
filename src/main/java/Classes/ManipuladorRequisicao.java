@@ -11,7 +11,7 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
         ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 
         try {
-            File arquivo = new File("C:\\Users\\usuario\\Documents\\arquivo\\access.log");
+            File arquivo = new File("C:\\Users\\ytalo\\Downloads\\access.log");
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

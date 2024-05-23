@@ -22,6 +22,7 @@ public class Main {
             case 2:
                 break;
             case 3:
+                manipulador.RelatorioPorcentagem(requisicoes);
                 break;
             case 4:
                 double media = manipulador.MediaReq(requisicoes);

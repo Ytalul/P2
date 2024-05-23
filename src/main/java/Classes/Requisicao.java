@@ -14,16 +14,18 @@ public class Requisicao {
 
     protected String extrairSistemaOperacional(String userAgent) {
         this.sistemaOperacional = "Desconhecido";
-        if (userAgent.contains("Windows NT")) {
+        if (userAgent.contains("Windows")) {
             sistemaOperacional = "Windows";
-        } else if (userAgent.contains("Mac OS X")) {
-            sistemaOperacional = "Mac OS X";
-        } else if (userAgent.contains("Linux")) {
+        } else if (userAgent.contains("Macintosh")) {
+            sistemaOperacional = "Macintosh";
+        } else if (userAgent.contains("Ubuntu")) {
+            sistemaOperacional = "Ubuntu";
+        } else if (userAgent.contains("Fedora")) {
+            sistemaOperacional = "Fedora";
+        } else if (userAgent.contains("Mobile")||userAgent.contains("Android")) {
+            sistemaOperacional = "Mobile";
+        } else if (userAgent.contains("Linux")||userAgent.contains("X11")) {
             sistemaOperacional = "Linux";
-        } else if (userAgent.contains("Android")) {
-            sistemaOperacional = "Android";
-        } else if (userAgent.contains("iPhone")) {
-            sistemaOperacional = "iOS";
         }
 
         return sistemaOperacional;

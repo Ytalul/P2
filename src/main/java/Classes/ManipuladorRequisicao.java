@@ -11,7 +11,7 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
         ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 
         try {
-            File arquivo = new File("C:\\Users\\ytalo\\Downloads\\access.log");
+            File arquivo = new File("C:\\Users\\usuario\\Documents\\arquivo\\access.log");
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -63,6 +63,40 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
             System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
     }
+
+    public void RelatorioPorcentagem(List<Requisicao> requisicoes){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("sistemasOperacionais.txt"))) {
+            int contTotal=0; int contWindows=0; int contMacintosh=0; int contFedora=0; int contUbuntu=0; int contMobile=0; int contLinuxOutros=0;
+            for (Requisicao req : requisicoes) {
+                if (req.data.contains("2021")) {
+                    contTotal = contTotal + 1;
+                    if (req.sistemaOperacional == "Windows") {
+                        contWindows++;
+                    } else if (req.sistemaOperacional == "Macintosh") {
+                        contMacintosh++;
+                    } else if (req.sistemaOperacional == "Ubuntu"){
+                        contUbuntu++;
+                    } else if (req.sistemaOperacional == "Fedora") {
+                        contFedora++;
+                    } else if (req.sistemaOperacional == "Mobile") {
+                        contMobile++;
+                    } else if (req.sistemaOperacional == "Linux") {
+                        contLinuxOutros++;
+                    }
+                }
+            }
+            writer.write("Windows "+String.format("%.4f", (double) 100*contWindows/contTotal) + "\n");
+            writer.write("Macintosh " +String.format("%.4f", (double) 100*contMacintosh/contTotal)+"\n");
+            writer.write("Ubuntu " +String.format("%.4f",(double) 100*contUbuntu/contTotal)+"\n");
+            writer.write("Fedora " +String.format("%.4f",(double) 100*contFedora/contTotal)+"\n");
+            writer.write("Mobile " +String.format("%.4f",(double) 100*contMobile/contTotal)+"\n");
+            writer.write("Linux, outros "+String.format("%.4f",(double) 100*contLinuxOutros/contTotal)+"\n");
+
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
+        }
+    }
+
     public double MediaReq(List<Requisicao> requisicoes) {
         int totalSize = 0;
         int count = 0;

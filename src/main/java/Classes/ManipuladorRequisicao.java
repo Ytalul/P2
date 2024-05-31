@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import Interfaces.iManipuladorRequisicao;
-public class ManipuladorRequisicao implements iManipuladorRequisicao {
+
+public class ManipuladorRequisicao {
 
     public ArrayList<Requisicao> criarListaRequisicao() throws IOException {
         ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 
         try {
-            File arquivo = new File("C:\\Users\\PC TESTE\\Desktop\\Faculdade\\5P\\Programação 2 - OO\\accessFake.log");
+            File arquivo = new File("C:\\Users\\14040160401\\Downloads\\access.log");
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -51,7 +51,6 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
     }
 
 
-    @Override
     public void RecursoGrande(List<Requisicao> requisicoes) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("recursosGrandes.txt"))) {
             for (Requisicao req : requisicoes) {

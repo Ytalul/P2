@@ -10,6 +10,7 @@ public class Requisicao {
     public String tamanhoObjeto;
     public String userAgent;
     public String sistemaOperacional;
+    public String urlReferencia;
 
 
     protected String extrairSistemaOperacional(String userAgent) {

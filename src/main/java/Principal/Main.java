@@ -29,6 +29,9 @@ public class Main {
                 manipulador.RecursoGrande(requisicoes);
                 System.out.println("Arquivo criado!");
             } else if (opcao == 2) {
+                System.out.println("Opção 2 selecionada, gerando arquivo...");
+                manipulador.NaoRespondidosNovembro(requisicoes);
+                System.out.println("Arquivo criado!");
 
             } else if (opcao == 3) {
                 System.out.println("Opção 3 selecionada, gerando relatório...");
@@ -43,6 +46,7 @@ public class Main {
                 break;
             }
         }
+    scan.close();
 
     }
 }

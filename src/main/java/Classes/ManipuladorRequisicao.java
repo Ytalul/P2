@@ -11,7 +11,7 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
         ArrayList<Requisicao> listaRequisicao = new ArrayList<Requisicao>();
 
         try {
-            File arquivo = new File("C:\\Users\\ytalo\\Downloads\\access.log");
+            File arquivo = new File("C:\\Users\\PC TESTE\\Desktop\\Faculdade\\5P\\Programação 2 - OO\\accessFake.log");
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -30,6 +30,7 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
                     novaRequisicao.tipoDeRequisicaoERecursoSolicitado = matcher.group(5);
                     novaRequisicao.codigoStatus = matcher.group(6);
                     novaRequisicao.tamanhoObjeto = matcher.group(7);
+                    novaRequisicao.urlReferencia = matcher.group(8);
                     novaRequisicao.userAgent = matcher.group(9);  // O grupo 9 captura o user-agent
 
                     // Extraindo o sistema operacional do useragent
@@ -38,7 +39,7 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
                     listaRequisicao.add(novaRequisicao);
 
                     // Debug para garantir que está coletando corretamente
-                    System.out.println(novaRequisicao.enderecoIp + " " + novaRequisicao.identidadeCliente + " " + novaRequisicao.userId + " " + novaRequisicao.data + " " + novaRequisicao.tipoDeRequisicaoERecursoSolicitado + " " + novaRequisicao.codigoStatus + " " + novaRequisicao.tamanhoObjeto + " " + novaRequisicao.sistemaOperacional);
+                    System.out.println(novaRequisicao.enderecoIp + " " + novaRequisicao.identidadeCliente + " " + novaRequisicao.userId + " " + novaRequisicao.data + " " + novaRequisicao.tipoDeRequisicaoERecursoSolicitado + " " + novaRequisicao.codigoStatus + " " + novaRequisicao.tamanhoObjeto + " " + novaRequisicao.sistemaOperacional + " " + novaRequisicao.urlReferencia);
                 }
             }
             bufferedReader.close();
@@ -125,7 +126,7 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
 
                 if (status >= 400 && status <= 499) {
                     if (requisicao.data != null && requisicao.data.contains("Nov/2021")) {
-                        writer.write(requisicao.codigoStatus + "informações aqui" + "\" Nov/2021\n"); //ta faltando melhorar o regex principal, ele nao pega tudo nao
+                        writer.write(requisicao.codigoStatus + " \"" + requisicao.urlReferencia + "\" Nov/2021\n"); //ta faltando melhorar o regex principal, ele nao pega tudo nao
                     }
                 }
             }

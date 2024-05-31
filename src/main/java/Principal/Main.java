@@ -12,8 +12,8 @@ public class Main {
 
         // ---- AJUSTAR O CAMINHO DO ARQUIVO NA CLASSE MANIPULADOR LINHA  14 ----
         ManipuladorRequisicao manipulador = new ManipuladorRequisicao();
-        Menu menu = new Menu();
         ArrayList<Requisicao> requisicoes = manipulador.criarListaRequisicao();
+        Menu menu = new Menu();
 
         menu.Opcoes(requisicoes);
     }

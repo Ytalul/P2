@@ -110,7 +110,27 @@ public class ManipuladorRequisicao implements iManipuladorRequisicao {
                 count++;
             }
         }
-
         return count > 0 ? (double) totalSize / count : 0;
+    }
+
+    public void NaoRespondidosNovembro(List<Requisicao> requisicoes) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("naoRespondidosNovembro.txt"))) {
+            int status;
+            for (Requisicao requisicao : requisicoes) {
+                try {
+                    status = Integer.parseInt(requisicao.codigoStatus);
+                } catch (NumberFormatException e) {
+                    continue;
+                }
+
+                if (status >= 400 && status <= 499) {
+                    if (requisicao.data != null && requisicao.data.contains("Nov/2021")) {
+                        writer.write(requisicao.codigoStatus + "informações aqui" + "\" Nov/2021\n"); //ta faltando melhorar o regex principal, ele nao pega tudo nao
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

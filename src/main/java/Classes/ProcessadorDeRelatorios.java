@@ -1,55 +1,43 @@
 package Classes;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 public class ProcessadorDeRelatorios {
-    public void RecursoGrande(List<Requisicao> requisicoes) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("recursosGrandes.txt"))) {
-            for (Requisicao req : requisicoes) {
-                if (Integer.parseInt(req.codigoStatus) >= 200 && Integer.parseInt(req.codigoStatus) < 300 && Integer.parseInt(req.tamanhoObjeto) > 2000) {
-                    writer.write(req.codigoStatus + " " + req.tamanhoObjeto + " " + req.enderecoIp);
-                    writer.newLine();
-                }
+    private ManipuladorArquivo manipuladorArquivo = new ManipuladorArquivo();
+
+    public void RecursosGrandes(List<Requisicao> requisicoes) {
+        manipuladorArquivo.abrirArquivoParaEscrita("recursosGrandes.txt");
+        for (Requisicao req : requisicoes) {
+            if (Integer.parseInt(req.codigoStatus) >= 200 && Integer.parseInt(req.codigoStatus) < 300 && Integer.parseInt(req.tamanhoObjeto) > 2000) {
+                manipuladorArquivo.escreverNoArquivo(req.codigoStatus + " " + req.tamanhoObjeto + " " + req.enderecoIp);
             }
-        } catch (IOException e) {
-            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
+        manipuladorArquivo.fecharArquivoEscrita();
     }
 
-    public void RelatorioPorcentagem(List<Requisicao> requisicoes){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("sistemasOperacionais.txt"))) {
-            int contTotal=0; int contWindows=0; int contMacintosh=0; int contFedora=0; int contUbuntu=0; int contMobile=0; int contLinuxOutros=0;
-            for (Requisicao req : requisicoes) {
-                if (req.data.contains("2021")) {
-                    contTotal = contTotal + 1;
-                    if (req.sistemaOperacional == "Windows") {
-                        contWindows++;
-                    } else if (req.sistemaOperacional == "Macintosh") {
-                        contMacintosh++;
-                    } else if (req.sistemaOperacional == "Ubuntu"){
-                        contUbuntu++;
-                    } else if (req.sistemaOperacional == "Fedora") {
-                        contFedora++;
-                    } else if (req.sistemaOperacional == "Mobile") {
-                        contMobile++;
-                    } else if (req.sistemaOperacional == "Linux") {
-                        contLinuxOutros++;
-                    }
+    public void RelatorioPorcentagem(List<Requisicao> requisicoes) {
+        manipuladorArquivo.abrirArquivoParaEscrita("sistemasOperacionais.txt");
+        int contTotal = 0, contWindows = 0, contMacintosh = 0, contFedora = 0, contUbuntu = 0, contMobile = 0, contLinuxOutros = 0;
+        for (Requisicao req : requisicoes) {
+            if (req.data.contains("2021")) {
+                contTotal++;
+                switch (req.sistemaOperacional) {
+                    case "Windows": contWindows++; break;
+                    case "Macintosh": contMacintosh++; break;
+                    case "Ubuntu": contUbuntu++; break;
+                    case "Fedora": contFedora++; break;
+                    case "Mobile": contMobile++; break;
+                    case "Linux": contLinuxOutros++; break;
                 }
             }
-            writer.write("Windows "+String.format("%.4f", (double) 100*contWindows/contTotal) + "\n");
-            writer.write("Macintosh " +String.format("%.4f", (double) 100*contMacintosh/contTotal)+"\n");
-            writer.write("Ubuntu " +String.format("%.4f",(double) 100*contUbuntu/contTotal)+"\n");
-            writer.write("Fedora " +String.format("%.4f",(double) 100*contFedora/contTotal)+"\n");
-            writer.write("Mobile " +String.format("%.4f",(double) 100*contMobile/contTotal)+"\n");
-            writer.write("Linux, outros "+String.format("%.4f",(double) 100*contLinuxOutros/contTotal)+"\n");
-
-        } catch (IOException e) {
-            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
+        manipuladorArquivo.escreverNoArquivo("Windows " + String.format("%.4f", (double) 100 * contWindows / contTotal));
+        manipuladorArquivo.escreverNoArquivo("Macintosh " + String.format("%.4f", (double) 100 * contMacintosh / contTotal));
+        manipuladorArquivo.escreverNoArquivo("Ubuntu " + String.format("%.4f", (double) 100 * contUbuntu / contTotal));
+        manipuladorArquivo.escreverNoArquivo("Fedora " + String.format("%.4f", (double) 100 * contFedora / contTotal));
+        manipuladorArquivo.escreverNoArquivo("Mobile " + String.format("%.4f", (double) 100 * contMobile / contTotal));
+        manipuladorArquivo.escreverNoArquivo("Linux, outros " + String.format("%.4f", (double) 100 * contLinuxOutros / contTotal));
+        manipuladorArquivo.fecharArquivoEscrita();
     }
 
     public void MediaReq(List<Requisicao> requisicoes) {
@@ -58,7 +46,7 @@ public class ProcessadorDeRelatorios {
 
         for (Requisicao req : requisicoes) {
             if (req.tipoDeRequisicaoERecursoSolicitado.startsWith("POST") &&
-                    req.codigoStatus.startsWith("2") && // Código 2xx indica sucesso
+                    req.codigoStatus.startsWith("2") &&
                     req.data.contains("2021")) {
 
                 totalSize += Integer.parseInt(req.tamanhoObjeto);
@@ -70,23 +58,19 @@ public class ProcessadorDeRelatorios {
     }
 
     public void NaoRespondidosNovembro(List<Requisicao> requisicoes) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("naoRespondidosNovembro.txt"))) {
-            int status;
-            for (Requisicao requisicao : requisicoes) {
-                try {
-                    status = Integer.parseInt(requisicao.codigoStatus);
-                } catch (NumberFormatException e) {
-                    continue;
-                }
-
-                if (status >= 400 && status <= 499) {
-                    if (requisicao.data != null && requisicao.data.contains("Nov/2021")) {
-                        writer.write(requisicao.codigoStatus + " \"" + requisicao.urlReferencia + "\" Nov/2021\n"); //ta faltando melhorar o regex principal, ele nao pega tudo nao
-                    }
-                }
+        manipuladorArquivo.abrirArquivoParaEscrita("naoRespondidosNovembro.txt");
+        int status;
+        for (Requisicao requisicao : requisicoes) {
+            try {
+                status = Integer.parseInt(requisicao.codigoStatus);
+            } catch (NumberFormatException e) {
+                continue;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            if (status >= 400 && status <= 499 && requisicao.data != null && requisicao.data.contains("Nov/2021")) {
+                manipuladorArquivo.escreverNoArquivo(requisicao.codigoStatus + " \"" + requisicao.urlReferencia + "\" Nov/2021");
+            }
         }
+        manipuladorArquivo.fecharArquivoEscrita();
     }
 }

@@ -13,7 +13,7 @@ public class Menu {
             int opcao = scan.nextInt();
             if (opcao == 1) {
                 System.out.println("Opção 1 selecionada, gerando arquivo...");
-                processador.RecursoGrande(requisicoes);
+                processador.RecursosGrandes(requisicoes);
 
             } else if (opcao == 2) {
                 System.out.println("Opção 2 selecionada, gerando arquivo...");

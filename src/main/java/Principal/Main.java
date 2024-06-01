@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        // ---- AJUSTAR O CAMINHO DO ARQUIVO NA CLASSE MANIPULADOR LINHA  14 ----
+        // ---- AJUSTAR O CAMINHO DO ARQUIVO NA CLASSE MANIPULADOR, EM SEU CONSTRUTOR ----
         ManipuladorRequisicao manipulador = new ManipuladorRequisicao();
         ArrayList<Requisicao> requisicoes = manipulador.criarListaRequisicao();
         Menu menu = new Menu();

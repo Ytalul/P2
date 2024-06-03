@@ -25,7 +25,11 @@ public class Requisicao {
             sistemaOperacional = "Fedora";
         } else if (userAgent.contains("Mobile")||userAgent.contains("Android")) {
             sistemaOperacional = "Mobile";
-        } else if (userAgent.contains("Linux")||userAgent.contains("X11")) {
+        } else if (userAgent.contains("Linux")||userAgent.contains("X11") &&
+                !userAgent.contains("Android")&&
+                !userAgent.contains("Ubuntu") &&
+                !userAgent.contains("Fedora") &&
+                !userAgent.contains("Mobile") ) {
             sistemaOperacional = "Linux";
         }
 

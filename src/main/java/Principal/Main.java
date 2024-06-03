@@ -1,4 +1,6 @@
+// Integrantes do grupo: Ytalo, Bruno Felix, Marcelo de Oliveira, Edson Freitas e Lucas Leão.
 package Principal;
+
 
 import Classes.ManipuladorRequisicao;
 import Classes.Requisicao;

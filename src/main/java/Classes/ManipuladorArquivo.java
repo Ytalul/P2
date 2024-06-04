@@ -12,7 +12,7 @@ public class ManipuladorArquivo {
 
     public ManipuladorArquivo() {
         try {
-            arquivo = new File("C:\\Users\\PC TESTE\\Desktop\\Faculdade\\5P\\Programação 2 - OO\\accessFake.log");
+            arquivo = new File("C:\\Users\\AzupixLS\\Downloads\\access.log");
             fileReader = new FileReader(arquivo);
             bufferedReader = new BufferedReader(fileReader);
         } catch (FileNotFoundException e) {

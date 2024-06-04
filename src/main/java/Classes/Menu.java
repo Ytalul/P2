@@ -23,7 +23,8 @@ public class Menu {
                 processador.RelatorioPorcentagem(requisicoes);
 
             } else if (opcao == 4) {
-                processador.MediaReq(requisicoes);
+                CalculadorMedia calculador = new CalculadorMedia();
+                calculador.calcularMediaReq(requisicoes);
             }
             else {
                 System.out.println("Encerrando o programa.");
